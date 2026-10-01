@@ -101,6 +101,8 @@ rule samtools_coverage:
         coverage_out = temp('output/06_samtools_Mh_MhFV/coverage/{sample}_coverage.out')
     log:
         'output/logs/samtools_Mh_MhFV_coverage/samtools_Mh_MhFV_coverage_{sample}.log'
+    singularity:
+        samtools_container
     shell:
         'nice samtools coverage '
         '{input.bam} '
@@ -125,6 +127,8 @@ rule samtools_depth:
         depth_out = temp('output/06_samtools_Mh_MhFV/depth/{sample}_depth.out')
     log:
         'output/logs/samtools_depth/samtools_depth_Mh_MhFV_{sample}.log'
+    singularity:
+        samtools_container
     shell:
         'nice samtools depth '
         '{input.sorted_bam} '
@@ -144,6 +148,8 @@ rule samtools_flagstat:
         temp('output/05_bwa_{genome}/samtools_flagstat/{sample}.out')
     log:
         'output/logs/samtools_flagstat/samtools_flagstat_{sample}_{genome}.log'
+    singularity:
+        samtools_container
     shell:
         'nice samtools flagstat '
         '{input} > {output} '
@@ -156,6 +162,8 @@ rule samtools_index_MaIR:
         index = temp('output/05_bwa_MaIR/{sample}_sorted.bam.bai')
     log:
         'output/logs/samtools_index/samtools_index_MaIR_{sample}.log'
+    singularity:
+        samtools_container
     shell:
         'nice samtools index '
         '{input.bam} '
@@ -168,6 +176,8 @@ rule samtools_sort_MaIR:
         sorted_bam = temp('output/05_bwa_MaIR/{sample}_sorted.bam')
     log:
         'output/logs/samtools_sort/samtools_sort_MaIR_{sample}.log'
+    singularity:
+        samtools_container
     shell:
         'nice samtools sort '
         '{input.sam} '
@@ -181,6 +191,8 @@ rule samtools_index_Mh:
         index = 'output/05_bwa_Mh_MhmtDNA_MhFV/{sample}_sorted.bam.bai'
     log:
         'output/logs/samtools_index/samtools_index_Mh_MhmtDNA_MhFV_{sample}.log'
+    singularity:
+        samtools_container
     shell:
         'nice samtools index '
         '{input.bam} '
@@ -193,6 +205,8 @@ rule samtools_sort_Mh:
         sorted_bam = 'output/05_bwa_Mh_MhmtDNA_MhFV/{sample}_sorted.bam'
     log:
         'output/logs/samtools_sort/samtools_sort_Mh_MhmtDNA_MhFV_{sample}.log'
+    singularity:
+        samtools_container
     shell:
         'nice samtools sort '
         '{input.sam} '
